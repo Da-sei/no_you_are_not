@@ -1,0 +1,52 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: no_you_are_not
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+    env_file:
+      - ./backend/.env
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/no_you_are_not
+    ports:
+      - "3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    profiles:
+      - web
+    volumes:
+      - ./frontend:/app
+      - flutter_pub_cache:/root/.pub-cache
+    ports:
+      - "8080:8080"
+    command: >
+      sh -c "flutter pub get &&
+             flutter run -d web-server
+               --web-port 8080
+               --web-hostname 0.0.0.0"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
+  flutter_pub_cache:

@@ -1,0 +1,48 @@
+{
+  "identifier" : "CCBA1E69-B1E5-4A2F-AF89-1234567890AB",
+  "nonConsumableProducts" : [],
+  "nonRenewingSubscriptions" : [],
+  "products" : [],
+  "settings" : {
+    "_failTransactionsEnabled" : false,
+    "_interruptedPurchasesEnabled" : false,
+    "_locale" : "ja_JP",
+    "_storefront" : "JPN",
+    "_timeRate" : "MONTHLY_RENEWAL_EVERY_30_SECONDS"
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "A1B2C3D4-E5F6-7890-ABCD-EF1234567890",
+      "localizations" : [],
+      "name" : "PRO Plan",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [],
+          "codeOffers" : [],
+          "displayPrice" : "980",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "identifier" : "com.yourname.noYouAreNot.premium.monthly",
+          "internalID" : "F1E2D3C4-B5A6-7890-FEDC-BA0987654321",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "すべての機能が使い放題のPROプラン",
+              "displayName" : "PRO月額プラン",
+              "locale" : "ja_JP"
+            }
+          ],
+          "productID" : "com.yourname.noYouAreNot.premium.monthly",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "PRO Monthly",
+          "subscriptionGroupID" : "A1B2C3D4-E5F6-7890-ABCD-EF1234567890",
+          "type" : "RecurringSubscription"
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 2,
+    "minor" : 0
+  }
+}
